@@ -8,19 +8,34 @@ export class  Cliente {
   @Column()
   nome!: string;
 
-  @Column({type: 'decimal'})
-  cpf!: number;
+  @Column()
+  sexo!: string;
 
-  @Column({type: 'decimal'})
-  rg!: number;
+  @Column()
+  data_nascimento!: Date;
+
+  @Column()
+  cpf!: string;
+
+  @Column()
+  rg!: string;
+
+  @Column()
+  email!: string;
 
   @Column()
   endereco!: string;
 
   @Column()
-  email!: string;
-
+  telefone!: string;
 
   @Column()
-  contato!: number;
+  cartao_sus!: string;
+
+  @Column()
+  tipagem_sanguinea!: string;
+
+  @Column()
+  fator_rh!: string;
+
 }

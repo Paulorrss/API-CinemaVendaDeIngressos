@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import { UserRoutes } from './user/user.routes';
 import { BaseRoutes } from './base/base.routes';
-import { DespesaRoutes } from './cliente/cliente.routes';
+import { ClienteRoutes } from './cliente/cliente.routes';
 
 /**
  * Init component routes
@@ -13,5 +13,5 @@ import { DespesaRoutes } from './cliente/cliente.routes';
 export function registerRoutes(router: Router, prefix: string = ''): void {
   router.use(`${prefix}`, new BaseRoutes().routes());
   // router.use(`${prefix}/users`, new UserRoutes().routes());
-  router.use(`${prefix}/despesas`, new DespesaRoutes().routes());
+  router.use(`${prefix}/clientes`, new ClienteRoutes().routes());
 }
