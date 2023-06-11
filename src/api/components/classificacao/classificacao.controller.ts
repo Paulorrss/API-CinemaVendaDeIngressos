@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import { AppDataSource } from '../../../config/database/mysql-datasource.config';
 import { Classificacao } from './classificacao.entity';
-import { ClassificacaoRoutes } from './classificacao.routes';
+
 
 export class ClassificacaoController {
   public async list(req: Request, res: Response) {

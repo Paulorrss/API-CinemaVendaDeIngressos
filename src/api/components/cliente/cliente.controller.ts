@@ -72,6 +72,7 @@ export class ClienteController {
     return res.json(cliente_salvo);
   }
 
+  //CRIANDO DELETE
   public async destroy(req: Request, res: Response) {
     const { cod } = req.params;
 
