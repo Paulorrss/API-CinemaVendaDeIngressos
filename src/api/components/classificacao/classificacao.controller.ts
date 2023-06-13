@@ -36,7 +36,7 @@ export class ClassificacaoController {
     // const cod = req.params.cod;
     const { cod } = req.params;
 
-    const classificacao = await AppDataSource.manager.findOneBy(Classificacao, { id: cod });
+    const classificacao = await AppDataSource.manager.findOneBy(Classificacao, { id: parseInt(cod) });
 
     if (classificacao == null) {
       return res.status(404).json({ erro: 'Classificação não encontrada!' });
@@ -54,7 +54,7 @@ export class ClassificacaoController {
   public async destroy(req: Request, res: Response) {
     const { cod } = req.params;
 
-    const classificacao = await AppDataSource.manager.findOneBy(Classificacao, { id: cod });
+    const classificacao = await AppDataSource.manager.findOneBy(Classificacao, { id: parseInt(cod) });
 
     if (classificacao == null) {
       return res.status(404).json({ erro: 'Classificacao não encontrada!' });
@@ -68,7 +68,11 @@ export class ClassificacaoController {
   public async show(req: Request, res: Response) {
     const { cod } = req.params;
 
-    const classificacao = await AppDataSource.manager.findOneBy(Classificacao, { id: cod });
+    if(!Number.isInteger(parseInt(cod))) {
+      return res.status(400).json();
+    }
+
+    const classificacao = await AppDataSource.manager.findOneBy(Classificacao, { id: parseInt(cod) });
 
     if (classificacao == null) {
       return res.status(404).json({ erro: 'Cliente não encontrado!' });

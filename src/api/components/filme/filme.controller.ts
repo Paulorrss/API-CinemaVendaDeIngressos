@@ -41,7 +41,7 @@ export class FilmeController {
     // const cod = req.params.cod;
     const { cod } = req.params;
 
-    const filme = await AppDataSource.manager.findOneBy(Filme, { id: cod });
+    const filme = await AppDataSource.manager.findOneBy(Filme, { id: parseInt(cod) });
 
     if (filme == null) {
       return res.status(404).json({ erro: 'Filme não encontrada!' });
@@ -65,7 +65,7 @@ export class FilmeController {
   public async destroy(req: Request, res: Response) {
     const { cod } = req.params;
 
-    const filme = await AppDataSource.manager.findOneBy(Filme, { id: cod });
+    const filme = await AppDataSource.manager.findOneBy(Filme, { id: parseInt(cod)});
 
     if (filme == null) {
       return res.status(404).json({ erro: 'Filme não encontrado!' });
@@ -79,7 +79,11 @@ export class FilmeController {
   public async show(req: Request, res: Response) {
     const { cod } = req.params;
 
-    const filme = await AppDataSource.manager.findOneBy(Filme, { id: cod });
+    if(!Number.isInteger(parseInt(cod))) {
+      return res.status(400).json();
+    }
+
+    const filme = await AppDataSource.manager.findOneBy(Filme, { id: parseInt(cod)});
 
     if (filme== null) {
       return res.status(404).json({ erro: 'Filme não encontrado!' });

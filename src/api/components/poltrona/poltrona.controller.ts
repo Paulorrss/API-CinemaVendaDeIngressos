@@ -1,5 +1,7 @@
+import { validate } from 'class-validator';
 import { Request, Response } from 'express';
 import { AppDataSource } from '../../../config/database/mysql-datasource.config';
+import { Sala } from '../sala/sala.entity';
 import { Poltrona} from './poltrona.entity';
 
 
@@ -16,14 +18,25 @@ export class PoltronaController {
 
     //PEGANDO DADOS PARA CADASTRAR NOVO CLIENTE
 
-  let {numero, fileira, coordenada, status} = req.body
+  let {numero, fileira, coordenada, status, sala} = req.body
+
+  if(sala.id == undefined) {
+    return res.status(404).json({ erro: 'Sala inexistente'})
+  }
+
+  const _sala = await AppDataSource.manager.findOneBy(Sala, { id: sala.id });
+
+  if(_sala == null) {
+    return res.status(404).json({ erro: 'Sala inexistente'})
+  }
+
 
     let polt = new Poltrona();
     polt.numero = numero;
     polt.fileira  = fileira;
     polt.coordenada = coordenada;
     polt.status = status;
-  
+    polt.sala = _sala;
 
 
    // console.log(typeof cliente.valor)
@@ -39,7 +52,7 @@ export class PoltronaController {
     // const cod = req.params.cod;
     const { cod } = req.params;
 
-    const poltrona = await AppDataSource.manager.findOneBy(Poltrona, { id: cod });
+    const poltrona = await AppDataSource.manager.findOneBy(Poltrona, { id: parseInt(cod) });
 
     if (poltrona == null) {
       return res.status(404).json({ erro: 'Poltrona não encontrada!' });
@@ -62,7 +75,7 @@ export class PoltronaController {
   public async destroy(req: Request, res: Response) {
     const { cod } = req.params;
 
-    const poltrona = await AppDataSource.manager.findOneBy(Poltrona, { id: cod });
+    const poltrona = await AppDataSource.manager.findOneBy(Poltrona, { id: parseInt(cod) });
 
     if (poltrona == null) {
       return res.status(404).json({ erro: 'Poltrona não encontrada!' });
@@ -75,8 +88,11 @@ export class PoltronaController {
 
   public async show(req: Request, res: Response) {
     const { cod } = req.params;
-
-    const poltrona = await AppDataSource.manager.findOneBy(Poltrona, { id: cod });
+    
+    if(!Number.isInteger(parseInt(cod))) {
+      return res.status(400).json();
+    }
+    const poltrona = await AppDataSource.manager.findOneBy(Poltrona, {id: parseInt(cod) });
 
     if (poltrona == null) {
       return res.status(404).json({ erro: 'Poltrona não encontrada!' });

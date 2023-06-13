@@ -44,7 +44,7 @@ export class ClienteController {
     // const cod = req.params.cod;
     const { cod } = req.params;
 
-    const cliente = await AppDataSource.manager.findOneBy(Cliente, { id: cod });
+    const cliente = await AppDataSource.manager.findOneBy(Cliente, { id: parseInt(cod) });
 
     if (cliente == null) {
       return res.status(404).json({ erro: 'Cliente não encontrado!' });
@@ -76,7 +76,7 @@ export class ClienteController {
   public async destroy(req: Request, res: Response) {
     const { cod } = req.params;
 
-    const cliente = await AppDataSource.manager.findOneBy(Cliente, { id: cod });
+    const cliente = await AppDataSource.manager.findOneBy(Cliente, { id: parseInt(cod) });
 
     if (cliente == null) {
       return res.status(404).json({ erro: 'Cliente não encontrado!' });
@@ -90,7 +90,11 @@ export class ClienteController {
   public async show(req: Request, res: Response) {
     const { cod } = req.params;
 
-    const cliente = await AppDataSource.manager.findOneBy(Cliente, { id: cod });
+    if(!Number.isInteger(parseInt(cod))) {
+      return res.status(400).json();
+    }
+
+    const cliente = await AppDataSource.manager.findOneBy(Cliente, { id: parseInt(cod) });
 
     if (cliente == null) {
       return res.status(404).json({ erro: 'Cliente não encontrado!' });

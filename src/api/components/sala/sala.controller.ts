@@ -39,7 +39,7 @@ export class SalaController {
     // const cod = req.params.cod;
     const { cod } = req.params;
 
-    const sala = await AppDataSource.manager.findOneBy(Sala, { id: cod });
+    const sala = await AppDataSource.manager.findOneBy(Sala, { id: parseInt(cod) });
 
     if (sala == null) {
       return res.status(404).json({ erro: 'Sala não encontrada!' });
@@ -61,7 +61,7 @@ export class SalaController {
   public async destroy(req: Request, res: Response) {
     const { cod } = req.params;
 
-    const sala = await AppDataSource.manager.findOneBy(Sala, { id: cod });
+    const sala = await AppDataSource.manager.findOneBy(Sala, {id: parseInt(cod)});
 
     if (Sala == null) {
       return res.status(404).json({ erro: 'Sala não encontrada!' });
@@ -74,8 +74,12 @@ export class SalaController {
 
   public async show(req: Request, res: Response) {
     const { cod } = req.params;
+    
+    if(!Number.isInteger(parseInt(cod))) {
+      return res.status(400).json();
+    }
 
-    const sala = await AppDataSource.manager.findOneBy(Sala, { id: cod });
+    const sala = await AppDataSource.manager.findOneBy(Sala, { id: parseInt(cod)});
 
     if (sala == null) {
       return res.status(404).json({ erro: 'Sala não encontrado!' });
