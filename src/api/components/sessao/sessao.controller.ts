@@ -69,7 +69,7 @@ export class SessaoController {
     }
 
    
-    let {data, horario_inicio, horario_fim, sala, filme} = req.body
+    let {data, horario_inicio, horario_fim} = req.body
     let ses = new Sessao();
     ses.data  = data;
     ses.horario_inicio = horario_inicio;
