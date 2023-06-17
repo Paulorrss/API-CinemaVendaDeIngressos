@@ -1,3 +1,4 @@
+import { validate } from 'class-validator';
 import { Request, Response } from 'express';
 import { User } from './user.entity';
 import { Repository } from 'typeorm';

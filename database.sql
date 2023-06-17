@@ -3,7 +3,7 @@ use cinema_ingresso_db;
 
 create table cliente (
     id int primary key auto_increment,
-    nome varchar(300),
+    nome varchar(300) not null,
     sexo varchar(100),
     data_nascimento date,
     cpf varchar(100),
@@ -23,7 +23,7 @@ create table classificacao (
 
 create table filme (
     id int primary key auto_increment,
-    titulo varchar(300),
+    titulo varchar(300) not null,
     sinopse varchar(500),
     atores varchar(300),
     diretor varchar(300),

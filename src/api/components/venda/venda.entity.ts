@@ -10,12 +10,24 @@ export class  Venda {
   @PrimaryGeneratedColumn()
   id!: number;
 
+  @IsOptional()
+  @IsNumber()
+  @Column({
+    type: 'decimal',
+    transformer: {
+      to(value: any) { return value },
+      from(value: any) { return parseFloat(value) }
+    }
+  })
   @Column()
   valor!: number;
 
+  @IsOptional()
+  @IsDateString({ strict: true })
   @Column()
   data_hora!: Date;
 
+  @IsNotEmpty()
   @Column()
   situacao!: string;
 

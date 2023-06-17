@@ -1,3 +1,4 @@
+import { validate } from 'class-validator';
 import { Request, Response } from 'express';
 import { AppDataSource } from '../../../config/database/mysql-datasource.config';
 import { Ingresso} from './ingresso.entity';
@@ -70,10 +71,9 @@ export class IngressoController {
 
    
     let {codigo, valor, data_hora} = req.body
-    let ing = new Ingresso();
-    ing.codigo  = codigo;
-    ing.valor = valor;
-    ing.data_hora  = data_hora;
+    ingresso.codigo  = codigo;
+    ingresso.valor = valor;
+    ingresso.data_hora  = data_hora;
    
   
 

@@ -8,6 +8,8 @@ export class  Ingresso {
   @PrimaryGeneratedColumn()
   id!: number;
 
+  @IsOptional()
+  @IsNumber()
   @Column()
   codigo!: number;
 
@@ -23,6 +25,8 @@ export class  Ingresso {
   })
   valor!: number;
 
+  @IsNotEmpty()
+  @IsDateString({ strict: true })
   @Column()
   data_hora!: Date;
 

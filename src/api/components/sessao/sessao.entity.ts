@@ -8,16 +8,20 @@ export class  Sessao {
   @PrimaryGeneratedColumn()
   id!: number;
 
+  @IsNotEmpty()
+  @IsDateString({ strict: true })
   @Column()
   data!: Date;
 
+  @IsNotEmpty()
+  @IsDateString({ strict: true })
   @Column()
   horario_inicio!: Date;
 
+  @IsNotEmpty()
+  @IsDateString({ strict: true })
   @Column()
   horario_fim!: Date;
-
-
   
   @ManyToOne(() => Sala, { eager: true })
   @JoinColumn({

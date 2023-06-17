@@ -8,15 +8,21 @@ export class  Poltrona {
   @PrimaryGeneratedColumn()
   id!: number;
 
+  @IsOptional()
+  @IsNumber()
   @Column()
   numero!: number;
 
+  @IsOptional()
+  @IsNumber()
   @Column()
   fileira!: number;
 
+  @IsOptional()
   @Column()
   coordenada!: string;
 
+  @IsOptional()
   @Column()
   status!: string;
 
