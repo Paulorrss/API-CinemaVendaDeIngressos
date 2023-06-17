@@ -49,6 +49,11 @@ export class SessaoController {
     ses.sala  = _sala;
     ses.filme  = _filme;
 
+    const erros = await validate(ses);
+
+    if(erros.length > 0) {
+      return res.status(400).json(erros);
+    }
 
 
     const _sessao = await AppDataSource.manager.save(ses);

@@ -28,6 +28,11 @@ export class FilmeController {
     film.classificacao_indicativa = classificacao_indicativa;
     film.duracao  = duracao;
 
+    const erros = await validate(film);
+
+    if(erros.length > 0) {
+      return res.status(400).json(erros);
+    }
 
    // console.log(typeof cliente.valor)
     const _filme = await AppDataSource.manager.save(film);

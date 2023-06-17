@@ -23,7 +23,11 @@ export class Forma_PagamentoController {
     form.nome  = nome;
     form.ativado  = ativado;
     
+    const erros = await validate(form);
 
+    if(erros.length > 0) {
+      return res.status(400).json(erros);
+    }
 
    // console.log(typeof cliente.valor)
     const _forma = await AppDataSource.manager.save(form);

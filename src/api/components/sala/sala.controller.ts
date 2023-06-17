@@ -25,7 +25,11 @@ export class SalaController {
     sal.capacidade  = capacidade;
     sal.local  = local;
 
+    const erros = await validate(sal);
 
+    if(erros.length > 0) {
+      return res.status(400).json(erros);
+    }
 
    // console.log(typeof cliente.valor)
     const _sala = await AppDataSource.manager.save(sal);

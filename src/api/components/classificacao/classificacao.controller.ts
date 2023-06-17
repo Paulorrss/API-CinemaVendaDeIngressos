@@ -22,7 +22,11 @@ export class ClassificacaoController {
     let clas= new Classificacao();
     clas.nome  = nome;
 
+    const erros = await validate(clas);
 
+    if(erros.length > 0) {
+      return res.status(400).json(erros);
+    }
 
    // console.log(typeof cliente.valor)
     const _classificacao = await AppDataSource.manager.save(clas);

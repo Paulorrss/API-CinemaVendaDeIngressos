@@ -38,6 +38,11 @@ export class PoltronaController {
     polt.status = status;
     polt.sala = _sala;
 
+    const erros = await validate(polt);
+
+    if(erros.length > 0) {
+      return res.status(400).json(erros);
+    }
 
    // console.log(typeof cliente.valor)
     const _poltrona = await AppDataSource.manager.save(polt);

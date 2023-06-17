@@ -61,7 +61,11 @@ export class VendaController {
     ven.cliente  = _cliente;
     ven.forma_pagamento = _forma;
 
+    const erros = await validate(ven);
 
+    if(erros.length > 0) {
+      return res.status(400).json(erros);
+    }
 
     const _venda = await AppDataSource.manager.save(ven);
 

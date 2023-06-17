@@ -50,6 +50,11 @@ export class IngressoController {
     ing.poltrona  = _poltrona;
 
 
+    const erros = await validate(ing);
+
+    if(erros.length > 0) {
+      return res.status(400).json(erros);
+    }
 
     const _ingresso = await AppDataSource.manager.save(ing);
 

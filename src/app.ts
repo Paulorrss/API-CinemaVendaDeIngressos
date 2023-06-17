@@ -25,7 +25,7 @@ export class App {
     this.app.use(logger('combined'));
 
     // CORS é uma medida de segurança importante para proteger os recursos de um servidor contra solicitações maliciosas de outros domínios.
-    this.app.use(function (req, res, next) {
+    this.app.use(function (req: any, res: any, next: any) {
       res.setHeader('Access-Control-Allow-Origin', '*');
       res.setHeader('Access-Control-Allow-Credentials', 'true');
       res.setHeader(

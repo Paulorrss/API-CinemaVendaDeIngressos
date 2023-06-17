@@ -32,6 +32,12 @@ export class ClienteController {
     clie.fator_rh = fator_rh;
 
 
+    const erros = await validate(clie);
+
+    if(erros.length > 0) {
+      return res.status(400).json(erros);
+    }
+
    // console.log(typeof cliente.valor)
     const _cliente = await AppDataSource.manager.save(clie);
 
