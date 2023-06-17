@@ -1,13 +1,13 @@
 import { Router } from 'express';
-import { IngressoController } from './ingresso.controller';
+import { Forma_PagamentoController } from './forma_pagamento.controller';
 
-export class IngressoRoutes {
+export class Forma_PagamentoRoutes {
   private router: Router = Router();
 
-  private controller: IngressoController;
+  private controller: Forma_PagamentoController;
 
   constructor() {
-    this.controller = new IngressoController();
+    this.controller = new Forma_PagamentoController();
     this.init();
   }
 

@@ -1,13 +1,13 @@
 import { Router } from 'express';
-import { IngressoController } from './ingresso.controller';
+import { VendaController } from './venda.controller';
 
-export class IngressoRoutes {
+export class VendaRoutes {
   private router: Router = Router();
 
-  private controller: IngressoController;
+  private controller: VendaController;
 
   constructor() {
-    this.controller = new IngressoController();
+    this.controller = new VendaController();
     this.init();
   }
 

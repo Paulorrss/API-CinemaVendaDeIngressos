@@ -70,10 +70,10 @@ export class SessaoController {
 
    
     let {data, horario_inicio, horario_fim} = req.body
-    let ses = new Sessao();
-    ses.data  = data;
-    ses.horario_inicio = horario_inicio;
-    ses.horario_fim  = horario_fim;
+   
+    sessao.data  = data;
+    sessao.horario_inicio = horario_inicio;
+    sessao.horario_fim  = horario_fim;
   
 
     const sessao_salva = await AppDataSource.manager.save(sessao);
@@ -88,7 +88,7 @@ export class SessaoController {
     const sessao = await AppDataSource.manager.findOneBy(Sessao, { id: parseInt(cod) });
 
     if (sessao == null) {
-      return res.status(404).json({ erro: 'Poltrona não encontrada!' });
+      return res.status(404).json({ erro: 'Sessao não encontrada!' });
     }
 
     await AppDataSource.manager.delete(Sessao, sessao);
