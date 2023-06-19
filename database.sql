@@ -16,10 +16,17 @@ create table cliente (
     fator_rh varchar(1)
 );
 
+
+
 create table classificacao (
     id int primary key not null auto_increment,
     nome varchar (300)
 );
+insert into classificacao (id, nome) values (null, 'Baixa');
+insert into classificacao (id, nome) values (null, '+12');
+insert into classificacao (id, nome) values (null, '+17');
+
+
 
 create table filme (
     id int primary key auto_increment,
@@ -31,6 +38,9 @@ create table filme (
     classificacao_indicativa varchar(300),
     duracao time
 );
+insert into filme (id, titulo, sinopse, atores, diretor, genero, classificacao_indicativa, duracao) values (null, 'Cangaceiro', 'Filme sobre história do nordeste','Carlos enrique, joao miguel, maria gloria', 'Carlos Drumon', 'Comédia', ' +12', '02:00:00');
+insert into filme (id, titulo, sinopse, atores, diretor, genero, classificacao_indicativa, duracao) values (null, 'Noite Sobria', 'Filme sobre história de fantasmas que assombram uma casa','Maria lucia, Afonso andrade, Jenuino custódio', 'Schuts Deodoro', 'Terror', ' +16', '02:30:00');
+insert into filme (id, titulo, sinopse, atores, diretor, genero, classificacao_indicativa, duracao) values (null, 'O desejos', 'Filme animado sobre história onde desejos profundos podem se tornar realidade ','Juventino deodoro, Marcia Regina, Big bIG', 'Arleton randerb', 'Animalção', ' Livre', '02:20:00');
 
 create table sala (
     id int primary key auto_increment,
@@ -90,3 +100,5 @@ create table venda (
     foreign key(cliente_id) references cliente(id),
     foreign key(forma_pagamento_id) references forma_pagamento(id)
 );
+
+
