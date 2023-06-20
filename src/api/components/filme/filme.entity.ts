@@ -1,7 +1,7 @@
 import { IsBoolean, IsDateString, IsInt, IsNotEmpty, IsNumber, IsOptional } from 'class-validator';
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
-@Entity('filmes')
+@Entity('filme')
 export class  Filme {
   @PrimaryGeneratedColumn()
   id!: number;

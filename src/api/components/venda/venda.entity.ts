@@ -5,7 +5,7 @@ import { Cliente} from '../cliente/cliente.entity';
 import { Forma_Pagamento } from '../forma_pagamento/forma_pagamento.entity';
 
 
-@Entity('vendas')
+@Entity('venda')
 export class  Venda {
   @PrimaryGeneratedColumn()
   id!: number;
