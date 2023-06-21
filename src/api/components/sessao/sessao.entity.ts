@@ -3,7 +3,7 @@ import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from 't
 import { Sala} from '../sala/sala.entity';
 import { Filme} from '../filme/filme.entity';
 
-@Entity('sessoes')
+@Entity('sessao')
 export class  Sessao {
   @PrimaryGeneratedColumn()
   id!: number;
